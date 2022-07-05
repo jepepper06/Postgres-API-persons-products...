@@ -1,8 +1,8 @@
 const db = require('../../db')
 const pool = db.pool
 
-const ListPersons = () => {
-    pool
+const ListPersons = async () => {
+    await pool
     .query('SELECT name, country FROM person')
     .then(res => {
         console.log('[Persons table]:', res.rows)
@@ -14,8 +14,8 @@ const ListPersons = () => {
     })
 }
 
-const ListPersonsByParameter = (id) => {
-    pool
+const ListPersonsByParameter = async (id) => {
+    await pool
     .query('SELECT name, country FROM person WHERE id = $1',[id])
     .then(res => {
         console.log('[Persons table]:', res.rows)
@@ -27,8 +27,8 @@ const ListPersonsByParameter = (id) => {
     })
 }
 
-const ListPersonsByCountry = (country) => {
-    pool
+const ListPersonsByCountry = async (country) => {
+    await pool
     .query('SELECT name, country FROM person WHERE country = $1',[country])
     .then(res => {
         console.log('[Persons table]:', res.rows)
@@ -40,8 +40,8 @@ const ListPersonsByCountry = (country) => {
     })
 }
 
-const InsertPerson = (name,country) => {
-    pool
+const InsertPerson = async (name,country) => {
+    await pool
     .query('INSERT INTO person (name,counytry) VALUES($1,$2) RETURNNING *',[name,country])
     .then(res => {
         console.log('[Persons table]:', res.rows)
@@ -53,8 +53,8 @@ const InsertPerson = (name,country) => {
     })
 }
 
-const updatePerson = (id,name,country) => {
-    pool
+const updatePerson = async (id,name,country) => {
+    await pool
     .query(`UPDATE person (name,country)  SET name = $2, country = $3,
      WHERE id=$1 RETURNING *`,[id,name,country])
     .then(res => {
