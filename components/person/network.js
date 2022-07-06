@@ -49,4 +49,4 @@ router.get('/person/:id', (req,res) => {
         })
 })
 
-router
+module.exports  = router
