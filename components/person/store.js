@@ -1,5 +1,5 @@
 const db = require('../../db')
-const pool = db.pool
+// const pool = db.pool
 
 const ListPersons = async () => {
     await pool
@@ -14,7 +14,7 @@ const ListPersons = async () => {
     })
 }
 
-const ListPersonsByParameter = async (id) => {
+const ListPersonsById = async (id) => {
     await pool
     .query('SELECT name, country FROM person WHERE id = $1',[id])
     .then(res => {
