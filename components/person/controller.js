@@ -2,7 +2,10 @@ const store = require('./store')
 const {list,getById,getByCountry,update,add} = store
 
 async function listPersons(){
-    return await list()
+    return new Promise(async (resolve) => {
+        resolve( await list())
+    })
+
 }
 
 async function getPersonById(id){
