@@ -1,3 +1,4 @@
+// COÑO COMPADRE A VECES QUEDO CON LA CABEZA ATRAS, COMO ES LA VAINA??
 const db = require('../../db')
 const pool = db.pool
 
