@@ -40,7 +40,7 @@ router.get('/:country',(req,res) => {
         })
 })
 
-router.get('/:id', (req,res) => {
+router.get('/id/:id', (req,res) => {
     controller.getPersonById(req.params['id'])
         .then( person => {
             response.success(req,res,person,200)
