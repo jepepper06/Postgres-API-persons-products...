@@ -25,19 +25,19 @@ async function getByName(name){
     })
 }
 
-async function update(id,name,desc,type){
+async function update(id,name,desc,type,price){
     return await new Promise(async(resolve,reject) =>{
-        if(!id || !name || desc || type){
+        if(!id || !name || !desc || !type || !price){
             reject('fail to update')
         }else{
-            resolve( await store.update(id,name,desc,type))
+            resolve( await store.update(id,name,desc,type,price))
         }
     })
 }
 
-async function insert(name,desc,type){
+async function insert(name,desc,type,price){
     return await new Promise(async(resolve,reject) =>{
-        if(!name || !desc ||!type){
+        if(!name || !desc ||!type || !price){
             reject('Not data')
         }else{
             resolve(await store.update(name,desc,type))

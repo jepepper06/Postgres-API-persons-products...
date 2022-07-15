@@ -3,9 +3,9 @@ const db = require('../../db')
 const pool = db.pool
 
 // CREATE
-const CreateProduct = async(name,description,type) => {
+const CreateProduct = async(name,description,type,price) => {
     let response
-    await pool.query('INSERT INTO product (product_name,product_desc,product_type) VALUES ($1,$2,$3) RETURNING *',[name,description,type])
+    await pool.query('INSERT INTO product (product_name,product_desc,product_type,product_price) VALUES ($1,$2,$3,$4) RETURNING *',[name,description,type,price])
         .then(resp =>{
             console.log(resp.rows)
             response = resp.rows
@@ -17,11 +17,11 @@ const CreateProduct = async(name,description,type) => {
 
 // UPDATE
 
-const UpdateProduct = async(id,name,desc,type)=> {
+const UpdateProduct = async(id,name,desc,type,price)=> {
     let response 
-    const QuerySQL = `UPDATE product SET product_name = $1, product_desc = $2, product_type = $3
-    WHERE product_id = $4`
-    await pool.query(QuerySQL,[name,desc,type,id])
+    const QuerySQL = `UPDATE product SET product_name = $1, product_desc = $2, product_type = $3, product_price = $4
+    WHERE product_id = $5`
+    await pool.query(QuerySQL,[name,desc,type,price,id])
         .then(resp =>{
             console.log(resp.rows)
             response = resp.rows
@@ -77,6 +77,7 @@ const listProductsByName = async(name) =>{
         })
     return response
 }
+CreateProduct('producto','desc of product','sex toy')
 
 module.exports ={
     list:ListAllProducts,
