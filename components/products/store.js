@@ -77,7 +77,6 @@ const listProductsByName = async(name) =>{
         })
     return response
 }
-CreateProduct('producto','desc of product','sex toy')
 
 module.exports ={
     list:ListAllProducts,
