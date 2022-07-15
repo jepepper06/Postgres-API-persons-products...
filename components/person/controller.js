@@ -1,6 +1,10 @@
 const store = require('./store')
 const {list,getById,getByCountry,update,add} = store
 
+
+// CREATEING CONTROLLER FOR THE DATABASE
+
+// GETTING ALL FROM STORE
 async function listPersons(){
     return new Promise(async (resolve) => {
         resolve( await list())
@@ -8,6 +12,8 @@ async function listPersons(){
 
 }
 
+
+// GETTING A PERSON FROM STORE BY ID
 async function getPersonById(id){
     return await new Promise(async (resolve,reject) =>{
         if(!id){
@@ -21,6 +27,8 @@ async function getPersonById(id){
     
 }
 
+
+//GETTTING A PERSON FROM STRE BY COUNTRY
  async function getPersonByCountry(country){
     return await new Promise(async (resolve,reject) =>{
         if(!country){
@@ -33,6 +41,8 @@ async function getPersonById(id){
     })
 }
  
+
+// UPDATING A PERSON FROM STORE
 async function updatePerson(id,name,country){
     return await new Promise(async (resolve,reject) =>{
         if(!id || !name || !country){
@@ -45,6 +55,8 @@ async function updatePerson(id,name,country){
     })
 }
 
+
+// ADDING A PERSON FROM STORE
 async function addPerson(name,country){
     return await new Promise(async (resolve,reject) =>{
         if(!name || !country){

@@ -3,6 +3,10 @@ const response = require('../../network/responses')
 const express = require('express')
 const router = express.Router()
 
+
+// MANAGING REQUEST AND MAKING RESPONSES
+
+//GETTING ALL
 router.get('/',(req,res) => {
     controller.listPersons()
         .then(personsList => {
@@ -13,6 +17,8 @@ router.get('/',(req,res) => {
         })
 })
 
+
+// POSTING A PERSON
 router.post('/',(req,res) => {
     controller.addPerson(req.body.name,req.body.country)
         .then( addedPerson => {
@@ -22,6 +28,8 @@ router.post('/',(req,res) => {
         }) 
 })
 
+
+//UPDATE A PERSON
 router.patch('/:id',(req,res) => {
     controller.updatePerson(req.params['id'],req.body.name,req.body.country)
         .then( updatedPerson => {
@@ -31,6 +39,8 @@ router.patch('/:id',(req,res) => {
         })
 })
 
+
+// GET A PERSON BY COUNTRY
 router.get('/:country',(req,res) => {
     controller.getPersonByCountry(req.params['country'])
         .then( listOfPersons => {
@@ -40,6 +50,8 @@ router.get('/:country',(req,res) => {
         })
 })
 
+
+// GET A PERSON BY ID
 router.get('/id/:id', (req,res) => {
     controller.getPersonById(req.params['id'])
         .then( person => {

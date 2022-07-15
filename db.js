@@ -1,5 +1,9 @@
 const {Pool} = require('pg')
 
+
+// DATABASE THINGS
+
+//POOLING
 const pool = new Pool({
     host: 'localhost',
     user: 'postgres',
@@ -10,6 +14,8 @@ const pool = new Pool({
     connectionTimeoutMillis: 4000
 })
 
+
+// I DONT EVEN KNOW WHAT IT DOES HERE XDDDDD
 pool.connect((err, client, release) => {
     if (err) {
       return console.error('Error acquiring client', err.stack)

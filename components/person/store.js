@@ -2,6 +2,9 @@
 const db = require('../../db')
 const pool = db.pool
 
+// DATABASE HANDLING
+
+// GETTING ALL THE REGISTERS
 const ListPersons = async () => {
     let respuesta
     await pool
@@ -14,11 +17,13 @@ const ListPersons = async () => {
         respuesta = err
         setImmediate(
             
-            ()=> {throw err})
+            () => {throw err})
     })
     return respuesta
 }
 
+
+// GETTING BY ID
 const ListPersonsById = async (id) => {
     let respuesta
     await pool
@@ -35,6 +40,8 @@ const ListPersonsById = async (id) => {
     return respuesta
 }
 
+
+// GETTING BY COUNTRY
 const ListPersonsByCountry = async (country) => {
     let respuesta
     await pool
@@ -50,6 +57,8 @@ const ListPersonsByCountry = async (country) => {
     return respuesta
 }
 
+
+// POST A REGISTER
 const InsertPerson = async (name,country) => {
     let respuesta
     await pool
@@ -65,6 +74,8 @@ const InsertPerson = async (name,country) => {
     return respuesta.rows
 }
 
+
+// UPDATE A REGISTER
 const updatePerson = async (id,name,country) => {
     let respuesta
     await pool
@@ -81,6 +92,8 @@ const updatePerson = async (id,name,country) => {
     return respuesta.rows
 }
 
+
+// DELETE A REGISTER
 
 
 module.exports =  {
