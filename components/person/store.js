@@ -93,7 +93,6 @@ const updatePerson = async (id,name,country) => {
 
 // DELETE A REGISTER
 
-
 module.exports =  {
     list:ListPersons,
     update: updatePerson,
