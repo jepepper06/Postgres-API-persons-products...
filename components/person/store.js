@@ -14,10 +14,8 @@ const ListPersons = async () => {
         console.log(resp.rows)
     })
     .catch(err => {
-        respuesta = err
-        setImmediate(
-            
-            () => {throw err})
+        const error = `[Error on Store]: ${err}`
+        console.log(error)
     })
     return respuesta
 }
@@ -71,7 +69,7 @@ const InsertPerson = async (name,country) => {
         const error = `[Error on Store]: ${err}`
         console.log(error)
     })
-    return respuesta.rows
+    return respuesta
 }
 
 
@@ -89,7 +87,7 @@ const updatePerson = async (id,name,country) => {
         const error = `[Error on Store]: ${err}`
         console.log(error)
     })
-    return respuesta.rows
+    return respuesta
 }
 
 
