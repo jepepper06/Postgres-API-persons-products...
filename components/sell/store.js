@@ -97,5 +97,6 @@ module.exports = {
     listById: listSellById,
     listByPerson: listSellsByPerson,
     create: createSell,
-    update:updateSell
+    update:updateSell,
+    list: listSells
 }
