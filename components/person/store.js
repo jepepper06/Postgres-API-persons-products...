@@ -43,7 +43,7 @@ const ListPersonsById = async (id) => {
 const ListPersonsByCountry = async (country) => {
     let respuesta
     await pool
-    .query('SELECT name, country FROM person WHERE country = $1',[country])
+    .query('SELECT name, country FROM person WHERE country ~*  $1',[country])
     .then(resp =>{
         console.log(resp.rows)
         respuesta = resp.rows

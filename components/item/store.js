@@ -66,8 +66,25 @@ const getBySellID = async (sell_id) => {
         response = resp.rows
     }).catch(e => {
         const error = `[Error in ItemStore]: ${e}`
+        console.log(error)
     })
     return response
+}
+// GET ITEM QUANTITY BY ID
+const getItemQuantityByID = async (id) => {
+    let response
+    const QuerSQL = `SELECT quantity FROM item WHERE id = $1`
+    await pool.query(QuerSQL,[id])
+        .then( resp => {
+            console.log(resp.rows)
+            response = resp.rows.map( x => {
+                x.quantity}
+                )
+        }).catch( e => {
+            const error = `[Error in ItemStore]: ${e}`
+            console.log(error)
+        })
+        return response
 }
 
 module.exports= {
@@ -75,5 +92,6 @@ module.exports= {
     listByID: getItemById,
     list: listItems,
     insert:insertItem,
-    update:updateItem
+    update:updateItem,
+    getQuantity:getItemQuantityByID,
 }

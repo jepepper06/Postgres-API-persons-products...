@@ -1,10 +1,13 @@
 const store = require('./store')
 
+// LIST
 async function list(){
     return await new Promise(async (resolve) =>{
         resolve(await store.list())
     })
 }
+
+// GET BY ID
 async function getById(id){
     return await new Promise(async(resolve,reject)=>{
         if(!id){
@@ -15,6 +18,7 @@ async function getById(id){
     })
 }
 
+// NAME
 async function getByName(name){
     return await new Promise( async(resolve,reject) =>{
         if(!name){
@@ -25,26 +29,40 @@ async function getByName(name){
     })
 }
 
-async function update(id,name,desc,type,price){
+// UPDATE
+async function update(id,name,desc,price){
     return await new Promise(async(resolve,reject) =>{
-        if(!id || !name || !desc || !type || !price){
+        if(!id || !name || !desc || !price){
             reject('fail to update')
         }else{
-            resolve( await store.update(id,name,desc,type,price))
+            resolve( await store.update(id,name,desc,price))
         }
     })
 }
 
-async function insert(name,desc,type,price){
+//INSERT
+async function insert(name,desc,price){
     return await new Promise(async(resolve,reject) =>{
-        if(!name || !desc ||!type || !price){
+        if(!name || !desc || !price){
             reject('Not data')
         }else{
-            resolve(await store.update(name,desc,type))
+            resolve(await store.insert(name,desc,price))
         }
     })
+}
+
+// PRICE
+async function getPrice(id){
+return await new Promise(async(resolve,reject) => {
+    if(!id){
+        reject('NOT ID TO SEARCH A PRICE')
+    }else{
+        resolve(await store.price(id))
+    }
+})
+
 }
 
 module.exports = {
-    list,getById,getByName,insert,update
+    list,getById,getByName,insert,update,getPrice
 }

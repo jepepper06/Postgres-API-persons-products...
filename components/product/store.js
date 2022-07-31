@@ -1,11 +1,9 @@
-
-const db = require('../../db')
-const pool = db.pool
+const {pool} = require('../../db')
 
 // CREATE
 const CreateProduct = async (name,desc,price) => {
     let response
-    await pool.query('INSERT INTO product (name,desc,price) VALUES ($1,$2,$3) RETURNING *',[name,desc,price])
+    await pool.query('INSERT INTO product (name,"desc",price) VALUES ($1,$2,$3) RETURNING *',[name,desc,price])
         .then(resp =>{
             console.log(resp.rows)
             response = resp.rows
@@ -19,9 +17,9 @@ const CreateProduct = async (name,desc,price) => {
 
 const UpdateProduct = async (id,name,desc,price)=> {
     let response 
-    const QuerySQL = `UPDATE product SET name = $1, desc = $2, type = $3, price = $4
-    WHERE id = $5`
-    await pool.query(QuerySQL,[name,desc,type,price,id])
+    const QuerySQL = `UPDATE product SET name = $1, "desc" = $2, price = $3
+    WHERE id = $4 RETURNING *`
+    await pool.query(QuerySQL,[name,desc,price,id])
         .then(resp =>{
             console.log(resp.rows)
             response = resp.rows
@@ -66,7 +64,7 @@ const listProductById = async (id) =>{
 
 const listProductsByName = async (name) =>{
     let response 
-    const QuerySQL = `SELECT * FROM product WHERE name = $1`
+    const QuerySQL = `SELECT * FROM product WHERE name ~* $1`
     await pool.query(QuerySQL,[name])
         .then(resp =>{
             console.log(resp.rows)
@@ -77,13 +75,27 @@ const listProductsByName = async (name) =>{
         })
     return response
 }
+// GET PRICE BY ID
+const getProductPriceByID = async (id) => {
+    let response
+    const QuerySQL = `SELECT price FROM product WHERE id = $1`
+    await pool.query(QuerySQL,[id])
+        .then(resp => {
+            console.log(resp.rows)
+            response = resp.rows.map(array => array.price)
+        }).catch( e => {
+            const error = `[Error in Product Store]: ${e}`
+            console.log(error)
+        })
+        return response
+}
 
-CreateProduct('Hola','desc',6.7);
 
 module.exports ={
     list:ListAllProducts,
     insert:CreateProduct,
     getById:listProductById,
     getByName:listProductsByName,
-    update:UpdateProduct
+    update:UpdateProduct,
+    price: getProductPriceByID
 }

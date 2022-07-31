@@ -90,7 +90,8 @@ const deleteById = async (id) =>{
         const error = `[Error in Store SellService]: ${e}`
     })
 }
-// SQL JOINS ON PERSON & ITEM
+// SQL JOINS ONERSON & ITEM
+listSells()
 
 module.exports = {
     delete: deleteById,
