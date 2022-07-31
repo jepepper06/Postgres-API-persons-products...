@@ -1,11 +1,10 @@
 const { pool } = require("../../db")
 
 // UPDATE
-const updateItem = async (id,person_id,sell_id,product_id,quantity) => {
+const updateItem = async (id,product_id,quantity) => {
     let response
-    const QuerSQL = `UPDATE item SET person_id = $1,
-                    sell_id = $2, product_id = $3, quantity = $4 WHERE id = $5`
-    await pool.query(QuerSQL,[person_id,sell_id,product_id,quantity,id])
+    const QuerSQL = `UPDATE item SET product_id = $1, quantity = $2 WHERE id = $3`
+    await pool.query(QuerSQL,[product_id,quantity,id])
         .then(resp => {
             console.log(resp.rows)
             response = resp.rows
@@ -19,7 +18,7 @@ const updateItem = async (id,person_id,sell_id,product_id,quantity) => {
 const insertItem = async (person_id,sell_id,product_id,quantity) => {
     let response
     const QuerSQL =`INSERT INTO item (person_id,sell_id,product_id,quantity) VALUES ($1,$2,$3,$4)`
-    await pool.query(QuerSQL,[person_id,sell_id,product_id])
+    await pool.query(QuerSQL,[person_id,sell_id,product_id,quantity])
         .then(resp =>{
             console.log(resp.rows)
             response = resp.rows
