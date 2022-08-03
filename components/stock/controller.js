@@ -34,10 +34,12 @@ async function update(id,stock){
 }
 
 // INSERT
-async function insert(stock){
-    return await new Promise((resolve,reject) => {
+async function insert(product_id,stock){
+    return await new Promise(async(resolve,reject) => {
         if(!stock){
             reject("Insuficient data to create new stock")
+        }else{
+            resolve(await store.insert(product_id,stock))
         }
     })
 }
