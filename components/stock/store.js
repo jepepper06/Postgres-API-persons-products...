@@ -15,6 +15,7 @@ const updateSotck = async (id,stock) => {
             const error = `[Error in Stock]: ${e}`
             console.log(error)
         })
+        return response
 }
 
 // LIST BY PRODUCT_ID
@@ -29,6 +30,7 @@ const listStockById = async (id) => {
             const error = `[Error in Stock]: ${e}`
             console.log(error)
         })
+        return response
 }
 
 // LIST 
@@ -43,12 +45,13 @@ const listStock = async () => {
             const error = `[Error in Stock]: ${e}`
             console.log(error)
         })
+        return response
 }
 
 // INSERT
 const insertStock = async (product_id,stock) => {
     let response
-    const QuerySQL = `INSERT INTO stock (product_id,stock) VALUES ($1,$2)`
+    const QuerySQL = `INSERT INTO stock (product_id,stock) VALUES ($1,$2) RETURNING *`
 
     await pool.query(QuerySQL,[product_id,stock])
         .then(resp =>{
@@ -58,6 +61,7 @@ const insertStock = async (product_id,stock) => {
             const error = `[Error in Stock]: ${e}`
             console.log(error)
         })
+        return response
 }
 module.exports = {
     insert: insertStock,
