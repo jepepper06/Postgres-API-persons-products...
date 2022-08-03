@@ -91,7 +91,6 @@ const deleteById = async (id) =>{
     })
 }
 // SQL JOINS ONERSON & ITEM
-listSells()
 
 module.exports = {
     delete: deleteById,
