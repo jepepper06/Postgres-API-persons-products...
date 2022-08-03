@@ -46,7 +46,7 @@ const listStock = async () => {
 }
 
 // INSERT
-const insertStock = async (id,product_id,stock) => {
+const insertStock = async (product_id,stock) => {
     let response
     const QuerySQL = `INSERT INTO stock (product_id,stock) VALUES ($1,$2)`
 
@@ -58,4 +58,10 @@ const insertStock = async (id,product_id,stock) => {
             const error = `[Error in Stock]: ${e}`
             console.log(error)
         })
+}
+module.exports = {
+    insert: insertStock,
+    list: listStock,
+    getByID: listStockById,
+    update: updateSotck
 }

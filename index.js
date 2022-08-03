@@ -2,7 +2,6 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 const server = require('http').Server(app)
-const paser = require('body-parser')
 const db = require('./db')
 const pool = db.pool
 const router = require('./network/routes')
